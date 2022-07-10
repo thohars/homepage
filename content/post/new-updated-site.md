@@ -1,8 +1,7 @@
 ---
-author: Thoha Arsyad
 title: New Updated Site
 date: 2022-06-09T10:52:59+09:00
-tags: ['update']
+tags: ['update','meta']
 ---
 
 Hey.

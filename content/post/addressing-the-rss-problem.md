@@ -1,7 +1,7 @@
 ---
 title: "Addressing the RSS Problem"
 date: 2022-06-27T19:03:42+09:00
-draft: false
+tags: ['update','meta']
 ---
 
 When I migrated from Express to Hugo, I wanted to keep my main RSS feed URL ([/rss](/rss)). I forgot to implement that but basically, I'm planning to use a location block in Nginx and put the Hugo-generated feed ([/post/index.xml](/post/index.xml)).
