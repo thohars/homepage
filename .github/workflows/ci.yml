@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+    - name: Setup Surge
+      run: npm install -g surge
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: '0.101.0'
+        extended: true
+    - name: Deploy to Surge
+      run: hugo ; npx surge ./public ${{secrets.surge_domain}} --token ${{secrets.surge_token}}
+    - name: Deploy to VPS
+      uses: appleboy/ssh-action@master
+      with:
+        host: thoha.xyz 
+        username: ${{ secrets.user }}
+        key: ${{ secrets.ssh }}
+        port: ${{ secrets.port }}
+        passphrase: ${{ secrets.passphrase }}
+        script: |
+          cd ~/thoha.xyz
+          git stash
+          git pull --force origin main
+          hugo
