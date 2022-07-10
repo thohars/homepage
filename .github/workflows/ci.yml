@@ -22,7 +22,10 @@ jobs:
         hugo-version: '0.101.0'
         extended: true
     - name: Deploy to Surge
-      run: hugo ; npx surge ./public ${{secrets.surge_domain}} --token ${{secrets.surge_token}}
+      run: |
+        git submodule add --depth 1 https://github.com/mivinci/hugo-theme-minima.git themes/minima
+        hugo
+        npx surge ./public ${{secrets.surge_domain}} --token ${{secrets.surge_token}}
     - name: Deploy to VPS
       uses: appleboy/ssh-action@master
       with:
