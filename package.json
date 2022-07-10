@@ -5,5 +5,8 @@
     "type": "git",
     "url": "git+https://github.com/thohars/thoha.xyz.git"
   },
-  "author": "Thoha Arsyad"
+  "author": "Thoha Arsyad",
+  "dependencies": {
+    "surge": "^0.23.1"
+  }
 }
