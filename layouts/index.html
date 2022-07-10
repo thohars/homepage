@@ -1,0 +1,33 @@
+{{ define "main" }}
+	<main>
+		<h2 class="mt-8 mb-1">{{ .Site.Params.iam }} {{ .Site.Author.name }}</h2>
+		<p class="my-0">{{ .Site.Author.slogon }}</p>
+		<p class="my-3 home-intro">{{ .Site.Author.description | markdownify | safeHTML }}</p>
+    <h3>Info</h3>
+    <table>
+      <tbody>
+        {{ range $_, $key := .Site.Params.Info }}
+          <tr>
+            <th>{{ $key.name }}</th>
+            <td style="padding-left: 15px;"><a href="{{ $key.url }}">{{ $key.url }}</a></td>
+          </tr>
+        {{ end }}
+      </tbody>
+    </table>
+		{{ if eq .Paginator.PageNumber 1 }}
+		<h3 class="my-6">{{ .Site.Params.recent }}</h3>
+		{{ else }}
+		<h3 class="my-6">{{ .Site.Params.older }}</h3>
+		{{ end }}
+		<div>
+      {{ range (where .Site.RegularPages "Section" "post") }}
+      {{ partial "list.html" . }}
+      {{ end }}
+      {{ partial "paginator.html" . }}
+		</div>
+		{{ if .Site.Params.friends.feeds }}
+		<h3 class="my-6">{{ .Site.Params.friends.title }}</h3>
+		<div id="friends"></div>
+		{{ end }}
+	</main>
+{{ end }}
