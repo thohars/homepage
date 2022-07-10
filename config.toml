@@ -40,7 +40,7 @@ url = "https://twitter.com/thohars"
 svg = ""
 [[params.social]]
 name = "email"
-url = "mailto:mail@thoha.xyz"
+url = "mailto:thoha@fedora.email"
 svg = ""
 [[params.social]]
 name = "rss"
